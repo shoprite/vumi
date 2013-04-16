@@ -1,7 +1,7 @@
 # defaults for Exec
 Exec {
     path => ["/bin", "/sbin", "/usr/bin", "/usr/sbin", "/usr/local/bin", "/usr/local/sbin"],
-    user => 'vagrant',
+    user => 'root',
 }
 
 
@@ -52,7 +52,7 @@ apt::package { "riak": ensure => latest }
 file {
     "/var/praekelt":
         ensure => "directory",
-        owner => "vagrant";
+        owner => "root";
 }
 
 exec { "Clone git repository":
@@ -89,7 +89,7 @@ exec { "RabbitMQ setup":
 
 file {'/etc/riak/app.config':
     ensure    => 'present',
-    source    => 'puppet:///modules/vumi/riak-app.config'
+    source    => '/root/vumi/puppet/modules/vumi/files/riak-app.config'
 
 }
 
