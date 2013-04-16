@@ -18,7 +18,7 @@ exec { "add-basho-repo":
 exec { "apt-get update":
     command => "apt-get update",
     user => "root",
-    require => Exec["add-bash-repo"]
+    require => Exec["add-basho-repo"]
 }
 
 # Install these packages after apt-get update
