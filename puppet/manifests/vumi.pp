@@ -4,17 +4,21 @@ Exec {
     user => 'vagrant',
 }
 
-# Adding repo to sources list for riak
+
+package { "libcurl3": ensure=>"latest" }
+
+# Adding repo to sources list for riak and installing it
 exec { "add-basho-repo":
     command => "curl http://apt.basho.com/gpg/basho.apt.key | sudo apt-key add - && bash -c \"echo deb http://apt.basho.com $(lsb_release -sc) main > /etc/apt/sources.list.d/basho.list\"",
     user => "root",
+    require=>Package['libcurl3']
 }
 
 # Make sure package index is updated (when referenced by require)
 exec { "apt-get update":
     command => "apt-get update",
     user => "root",
-    require => Exec["add-basho-repo"]
+    require => Exec["add-bash-repo"]
 }
 
 # Install these packages after apt-get update
@@ -36,7 +40,6 @@ apt::package { "python-virtualenv": ensure => latest }
 apt::package { "rabbitmq-server": ensure => latest }
 apt::package { "git-core": ensure => latest }
 apt::package { "openjdk-6-jre-headless": ensure => latest }
-apt::package { "libcurl3": ensure => latest }
 apt::package { "libcurl4-openssl-dev": ensure => latest }
 apt::package { "redis-server": ensure => latest }
 apt::package { "protobuf-compiler": ensure => latest }
