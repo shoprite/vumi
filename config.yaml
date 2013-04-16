@@ -1,0 +1,11 @@
+workers: 
+  transport: vumi.transports.telnet.TelnetServerTransport
+  reverse_app: vumi.demos.words.ReverseWorker
+
+transport: 
+  transport_name: reverse
+  telnet_port: 9001
+
+reverse_app: 
+  transport_name: reverse
+
