@@ -1,6 +1,6 @@
 workers: 
   transport: vumi.transports.telnet.TelnetServerTransport
-  reverse_app: vumi.demos.words.ReverseWorker
+  reverse_app: shoprite.app.ShopriteAppWorker
 
 transport: 
   transport_name: reverse
